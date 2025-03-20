@@ -1,0 +1,27 @@
+{
+    "name": "zahzah/laravel-has-props",
+    "autoload": {
+        "psr-4": {
+            "Zahzah\\LaravelHasProps\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hamzah",
+            "email": "hamzahnuralfalah@gmail.com"
+        }
+    ],
+    "require": {
+        "stancl/virtualcolumn": "^1.4",
+        "zahzah/laravel-support": "1.x"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zahzah\\LaravelHasProps\\LaravelHasPropsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false
+}
