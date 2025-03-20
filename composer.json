@@ -1,8 +1,8 @@
 {
-    "name": "zahzah/laravel-has-props",
+    "name": "hanafalah/laravel-has-props",
     "autoload": {
         "psr-4": {
-            "Zahzah\\LaravelHasProps\\": "src/"
+            "Hanafalah\\LaravelHasProps\\": "src/"
         }
     },
     "authors": [
@@ -13,12 +13,12 @@
     ],
     "require": {
         "stancl/virtualcolumn": "^1.4",
-        "zahzah/laravel-support": "1.x"
+        "hanafalah/laravel-support": "1.x"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Zahzah\\LaravelHasProps\\LaravelHasPropsServiceProvider"
+                "Hanafalah\\LaravelHasProps\\LaravelHasPropsServiceProvider"
             ]
         }
     },

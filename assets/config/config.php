@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-use Zahzah\LaravelHasProps\Models as LaravelHasPropsModels;
+use Hanafalah\LaravelHasProps\Models as LaravelHasPropsModels;
 
 return [
     'database' => [

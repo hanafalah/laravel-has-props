@@ -1,6 +1,6 @@
 <?php
 
-namespace Zahzah\LaravelHasProps\Concerns;
+namespace Hanafalah\LaravelHasProps\Concerns;
 
 trait CurrentChecking
 {

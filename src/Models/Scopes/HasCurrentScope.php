@@ -1,11 +1,15 @@
 <?php
 
-namespace Zahzah\LaravelHasProps\Models\Scopes;
+namespace Hanafalah\LaravelHasProps\Models\Scopes;
 
 use Illuminate\Database\Eloquent\{
-    Builder, Model, Scope
+    Builder,
+    Model,
+    Scope
 };
-class HasCurrentScope implements Scope{
+
+class HasCurrentScope implements Scope
+{
     /**
      * Apply the scope to a given Eloquent query builder.
      * 
@@ -13,9 +17,10 @@ class HasCurrentScope implements Scope{
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return void
      */
-    public function apply(Builder $builder, Model $model){
-        if (isset($model->current_checking) && $model->current_checking && in_array($model::getCurrentName(),$model->getFillable())){
-            $builder->where($model::getCurrentName(),$model->getCurrentConstant());
+    public function apply(Builder $builder, Model $model)
+    {
+        if (isset($model->current_checking) && $model->current_checking && in_array($model::getCurrentName(), $model->getFillable())) {
+            $builder->where($model::getCurrentName(), $model->getCurrentConstant());
         }
     }
 }

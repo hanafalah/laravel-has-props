@@ -1,8 +1,8 @@
 <?php
 
-namespace Zahzah\LaravelHasProps;
+namespace Hanafalah\LaravelHasProps;
 
-use Zahzah\LaravelSupport\Providers\BaseServiceProvider;
+use Hanafalah\LaravelSupport\Providers\BaseServiceProvider;
 
 class LaravelHasPropsServiceProvider extends BaseServiceProvider
 {

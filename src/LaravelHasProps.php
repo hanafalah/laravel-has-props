@@ -1,7 +1,7 @@
 <?php
 
-namespace Zahzah\LaravelHasProps;
+namespace Hanafalah\LaravelHasProps;
 
-use Zahzah\LaravelHasProps\Supports\BaseModuleRegional;
+use Hanafalah\LaravelHasProps\Supports\BaseModuleRegional;
 
 class LaravelHasProps extends BaseModuleRegional {}

@@ -1,8 +1,9 @@
 <?php
 
-namespace Zahzah\LaravelHasProps\Concerns;
+namespace Hanafalah\LaravelHasProps\Concerns;
 
-trait HasCurrent{
+trait HasCurrent
+{
     public bool $current_checking      = true;
 
     protected static string $__current_name = 'current';
@@ -13,13 +14,15 @@ trait HasCurrent{
      *
      * @return void
      */
-    public function initializeHasCurrent(){
+    public function initializeHasCurrent()
+    {
         $this->mergeFillable([
             self::getCurrentName()
         ]);
     }
 
-    public function getConditions(): array{
+    public function getConditions(): array
+    {
         return $this->current_conditions ?? [];
     }
 
@@ -30,8 +33,9 @@ trait HasCurrent{
      * @param string $column 
      * @return Builder The query builder instance with the where clause applied.
      */
-    public function scopeIsCurrent($builder,$column=null){
-        return $builder->where($column ?? self::getCurrentName(),$this->getCurrentConstant());
+    public function scopeIsCurrent($builder, $column = null)
+    {
+        return $builder->where($column ?? self::getCurrentName(), $this->getCurrentConstant());
     }
 
     /**
@@ -40,8 +44,9 @@ trait HasCurrent{
      * @param mixed $query The query builder or model instance.
      * @return bool True if the current value is set, otherwise false.
      */
-    public static function isHasCurrent($query){
-        return in_array(self::getCurrentName(),$query->getFillable());
+    public static function isHasCurrent($query)
+    {
+        return in_array(self::getCurrentName(), $query->getFillable());
     }
 
     /**
@@ -50,8 +55,9 @@ trait HasCurrent{
      * @param mixed $query The query builder or model instance.
      * @return void
      */
-    public static function currentChecking(&$query){
-        if(self::isHasCurrent($query)) {
+    public static function currentChecking(&$query)
+    {
+        if (self::isHasCurrent($query)) {
             if (!isset($query->{self::getCurrentName()}))
                 $query->{self::getCurrentName()} = self::getCurrentConstant();
         }
@@ -94,23 +100,24 @@ trait HasCurrent{
      * @throws \Some_Exception_Class Description of the exception that may be thrown.
      * @return void
      */
-    public static function setCurrent($query,$args=null) {
-        $where = [[$query->getKeyName(),"<>",$query->getKey()]];
+    public static function setCurrent($query, $args = null)
+    {
+        $where = [[$query->getKeyName(), "<>", $query->getKey()]];
 
         $args ??= ($query->getConditions() ?? []);
         $newModel = app($query::class);
         /** IF ARGS IS ARRAY */
-        if (is_array($args)){
+        if (is_array($args)) {
             foreach ($args as $key => $arg) {
-                if (!isset($query->{$arg})){
+                if (!isset($query->{$arg})) {
                     $newModel = $newModel->whereNull($arg);
-                }else{
-                    $where[] = [$arg,$query->{$arg}];
+                } else {
+                    $where[] = [$arg, $query->{$arg}];
                 }
             }
-        }else{
+        } else {
             /** ELSE ARGS STAND ALONE VARIABLE */
-            $where[] = [$args,$query->{$args}];
+            $where[] = [$args, $query->{$args}];
         }
 
         /** SET CURRENT */
@@ -126,7 +133,8 @@ trait HasCurrent{
      * @throws \Some_Exception_Class Description of the exception that may be thrown.
      * @return void
      */
-    public static function setOld($query){
+    public static function setOld($query)
+    {
         if (self::isHasCurrent($query)) {
             if (isset($query->{self::getCurrentName()})) self::setCurrent($query);
         }
