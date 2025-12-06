@@ -34,6 +34,14 @@ trait HasProps
         ]);
     }
 
+    public function boolValidate(mixed $bool): bool{
+        return filter_var($this->{$bool} ?? false, FILTER_VALIDATE_BOOLEAN);
+    }
+
+    protected function getPropLists(): array{
+        return [];
+    }
+
     public function getPropsQuery(): array
     {
         return [];
@@ -55,7 +63,7 @@ trait HasProps
      * @param  string  $column
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeProp($builder, string $column = null): \Illuminate\Database\Eloquent\Builder
+    public function scopeProp($builder, ?string $column = null): \Illuminate\Database\Eloquent\Builder
     {
         return $builder->addSelect($column ?? $this->getDataColumn());
     }

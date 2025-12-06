@@ -4,11 +4,13 @@ namespace Hanafalah\LaravelHasProps\Models;
 
 use Hanafalah\LaravelHasProps\Concerns\HasProps;
 use Hanafalah\LaravelSupport\Models\BaseModel;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
-class ConfigProp extends BaseModel
-{
-    use HasProps;
+class ConfigProp extends BaseModel{
+    use HasUlids, HasProps;
 
+    public $incrementing      = false;
+    protected $primaryKey     = "id";      
     protected $keyType        = "string";
     protected $fillable       = [
         'id',
@@ -19,12 +21,10 @@ class ConfigProp extends BaseModel
         'props',
     ];
 
-    public function reference()
+    public static function bootHasConfigProps()
     {
-        return $this->morphTo();
     }
-    public function subject()
-    {
-        return $this->morphTo();
-    }
+
+    public function reference(){return $this->morphTo();}
+    public function subject(){return $this->morphTo();}
 }

@@ -2,7 +2,9 @@
 
 namespace Hanafalah\LaravelHasProps;
 
+use Hanafalah\LaravelHasProps\Events\PropSubjectUpdated;
 use Hanafalah\LaravelSupport\Providers\BaseServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class LaravelHasPropsServiceProvider extends BaseServiceProvider
 {
@@ -13,12 +15,15 @@ class LaravelHasPropsServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->registerMainClass(LaravelHasProps::class)
-            ->registers([
-                'Model',
-                'Database',
-                'Migration'
-            ]);
+        $this->registerMainClass(LaravelHasProps::class)->registers(['*']);
+    }
+
+    public function boot(){
+        // Listener
+        Event::listen(
+            PropSubjectUpdated::class,
+            [\Hanafalah\LaravelHasProps\Listeners\DispatchPropJobListener::class, 'handle']
+        );
     }
 
     /**
